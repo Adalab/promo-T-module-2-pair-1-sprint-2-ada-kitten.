@@ -7,7 +7,7 @@ const listElement = document.querySelector('.js-list');
 const searchButton = document.querySelector('.js-button-search');
 const buttonAdd = document.querySelector('.js-btn-add');
 const buttonCancelForm = document.querySelector('.js-btn-cancel');
-const inputDesc = document.querySelector('.js-input-desc');
+const intDescpu = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
 const inputRace = document.querySelector('.js-input-race');
@@ -38,6 +38,7 @@ const kittenData_3 = {
 };
 
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+
 
 //Funciones
 function renderKitten(kittenData) {
@@ -81,18 +82,26 @@ function handleClickNewCatForm(event) {
         hideNewCatForm();
     }
 }
+
 //Adicionar nuevo gatito
 function addNewKitten(event) {
     event.preventDefault();
     const valueDesc = inputDesc.value;
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
+    const newKittenDataObject = {
+    image: inputPhoto.value,
+    name: inputName.value,
+    desc: inputDesc.value,
+    race: inputRace.value,
+}
     if (valueDesc === "" || valuePhoto === "" || valueName === "") {
         labelMessageError.innerHTML = "¡Uy! parece que has olvidado algo";
     }
     else if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
         labelMessageError.innerHTML = "";
     }
+//kittenDataList.push(newKittenDataObject);
 }
 //Cancelar la búsqueda de un gatito
 function cancelNewKitten(event) {
