@@ -7,7 +7,7 @@ const listElement = document.querySelector('.js-list');
 const searchButton = document.querySelector('.js-button-search');
 const buttonAdd = document.querySelector('.js-btn-add');
 const buttonCancelForm = document.querySelector('.js-btn-cancel');
-const intDescpu = document.querySelector('.js-input-desc');
+const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
 const inputRace = document.querySelector('.js-input-race');
@@ -90,24 +90,21 @@ function addNewKitten(event) {
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
     const valueRace = inputRace.value;
-    const newKittenDataObject = {
-    image: valuePhoto,
-    name: valueName,
-    desc: valueDesc,
-    race: valueRace,
-}
-    kittenDataList.push(newKittenDataObject);
-    renderKittenList(kittenDataList);
-    //const messageElement = document.querySelector('.js-message');
-    //messageElement.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
-    
-    if (valueDesc === "" || valuePhoto === "" || valueName === "") {
+
+     if (valueDesc === "" || valuePhoto === "" || valueName === "") {
         labelMessageError.innerHTML = "¡Uy! parece que has olvidado algo";
     }
     else if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
-        
+        labelMessageError.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
+          const newKittenDataObject = {
+            image: valuePhoto,
+            name: valueName,
+            desc: valueDesc,
+            race: valueRace,
     }
-
+        kittenDataList.push(newKittenDataObject);
+        renderKittenList(kittenDataList);
+    }
 }
 //Cancelar la búsqueda de un gatito
 function cancelNewKitten(event) {
@@ -120,16 +117,30 @@ function cancelNewKitten(event) {
 }
 
 //Filtrar por descripción
+//function filterKitten(event) {
+//    event.preventDefault();
+//    const descrSearchText = input_search_desc.value;
+//    listElement.innerHTML = "";
+//    for (const kittenItem of kittenDataList) {
+//        if (kittenItem.desc.includes(descrSearchText)) {
+//            listElement.innerHTML += renderKitten(kittenItem);
+//        }
+//    }
+//}
+
+
+//Vuelve a pintar el listado de gatitos filtrados en el HTML.
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value;
     listElement.innerHTML = "";
-    for (const kittenItem of kittenDataList) {
-        if (kittenItem.desc.includes(descrSearchText)) {
-            listElement.innerHTML += renderKitten(kittenItem);
-        }
-    }
+    const newFilterKitten = kittenDataList.filter ((kitten) => kitten.desc.includes(descrSearchText))
+    .kitten.race.includes(raceSearchText);
+    console.log(newFilterKitten);
+    
+    renderKittenList(newFilterKitten);
 }
+
 
 //Mostrar el litado de gatitos en ell HTML
 renderKittenList(kittenDataList);
