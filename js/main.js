@@ -15,7 +15,7 @@ const inputRace = document.querySelector('.js-input-race');
 const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
-
+const input_search_race = document.querySelector('.js_in_search_race');
 
 //Objetos con cada gatito
 const kittenData_1 = {
@@ -133,9 +133,11 @@ function cancelNewKitten(event) {
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value;
+    const raceSearchText = input_search_race.value;
     listElement.innerHTML = "";
-    const newFilterKitten = kittenDataList.filter ((kitten) => kitten.desc.includes(descrSearchText))
-    .kitten.race.includes(raceSearchText);
+    const newFilterKitten = kittenDataList
+    .filter ((kitten) => kitten.desc.includes(descrSearchText))
+    .filter ((kitten) => kitten.race.includes(raceSearchText));
     console.log(newFilterKitten);
     
     renderKittenList(newFilterKitten);
