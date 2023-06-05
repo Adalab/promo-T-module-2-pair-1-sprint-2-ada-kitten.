@@ -116,20 +116,7 @@ function cancelNewKitten(event) {
     inputRace.value = "";
 }
 
-//Filtrar por descripción
-//function filterKitten(event) {
-//    event.preventDefault();
-//    const descrSearchText = input_search_desc.value;
-//    listElement.innerHTML = "";
-//    for (const kittenItem of kittenDataList) {
-//        if (kittenItem.desc.includes(descrSearchText)) {
-//            listElement.innerHTML += renderKitten(kittenItem);
-//        }
-//    }
-//}
-
-
-//Vuelve a pintar el listado de gatitos filtrados en el HTML.
+//Filtrar por descripción y raza y vuelve a pintar el listado de gatitos filtrados en el HTML.
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value;
