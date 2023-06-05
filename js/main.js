@@ -115,8 +115,6 @@ function cancelNewKitten(event) {
     inputName.value = "";
     inputRace.value = "";
 }
-
-//Filtrar por descripción y raza y vuelve a pintar el listado de gatitos filtrados en el HTML.
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value;
@@ -131,7 +129,7 @@ function filterKitten(event) {
 }
 
 
-//Mostrar el litado de gatitos en ell HTML
+//Mostrar el listado de gatitos en el HTML
 renderKittenList(kittenDataList);
 
 //Eventos
