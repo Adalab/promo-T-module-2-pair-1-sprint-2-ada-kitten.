@@ -40,7 +40,8 @@ const kittenData_3 = {
     race: "Maine Coon",
 };
 
-//const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+/*
 let kittenDataList = [];
 fetch(SERVER_URL)
 .then((response)=> response.json())
@@ -49,6 +50,7 @@ fetch(SERVER_URL)
     
 
 });
+*/
 
 
 //Funciones
@@ -132,8 +134,8 @@ function filterKitten(event) {
     const raceSearchText = input_search_race.value.toLowerCase();
     listElement.innerHTML = "";
     const newFilterKitten = kittenDataList
-    .filter ((kitten) => kitten.desc.includes.toLowerCase(descrSearchText))
-    .filter ((kitten) => kitten.race.includes.toLowerCase(raceSearchText));
+    .filter ((kitten) => kitten.desc.toLowerCase().includes(descrSearchText))
+    .filter ((kitten) => kitten.race.toLowerCase().includes(raceSearchText));
     console.log(newFilterKitten);
     
     renderKittenList(newFilterKitten);
