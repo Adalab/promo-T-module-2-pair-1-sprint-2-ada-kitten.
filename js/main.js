@@ -119,12 +119,12 @@ function cancelNewKitten(event) {
 //Filtrar por descripción y raza y vuelve a pintar el listado de gatitos filtrados en el HTML.
 function filterKitten(event) {
     event.preventDefault();
-    const descrSearchText = input_search_desc.value;
-    const raceSearchText = input_search_race.value;
+    const descrSearchText = input_search_desc.value.toLowerCase();
+    const raceSearchText = input_search_race.value.toLowerCase();
     listElement.innerHTML = "";
     const newFilterKitten = kittenDataList
-    .filter ((kitten) => kitten.desc.includes(descrSearchText))
-    .filter ((kitten) => kitten.race.includes(raceSearchText));
+    .filter ((kitten) => kitten.desc.includes.toLowerCase(descrSearchText))
+    .filter ((kitten) => kitten.race.includes.toLowerCase(raceSearchText));
     console.log(newFilterKitten);
     
     renderKittenList(newFilterKitten);
