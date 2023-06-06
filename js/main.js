@@ -17,6 +17,9 @@ const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const input_search_race = document.querySelector('.js_in_search_race');
 
+const GITHUB_USER = '<CeliaMSB>';
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
+
 //Objetos con cada gatito
 const kittenData_1 = {
     image: "https://dev.adalab.es/gato-siames.webp",
@@ -37,7 +40,15 @@ const kittenData_3 = {
     race: "Maine Coon",
 };
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+//const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+let kittenDataList = [];
+fetch(SERVER_URL)
+.then((response)=> response.json())
+.then((data) => {
+    Tasks=data.results;
+    
+
+});
 
 
 //Funciones
@@ -115,8 +126,6 @@ function cancelNewKitten(event) {
     inputName.value = "";
     inputRace.value = "";
 }
-
-//Filtrar por descripción y raza y vuelve a pintar el listado de gatitos filtrados en el HTML.
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value.toLowerCase();
@@ -131,7 +140,7 @@ function filterKitten(event) {
 }
 
 
-//Mostrar el litado de gatitos en ell HTML
+//Mostrar el listado de gatitos en el HTML
 renderKittenList(kittenDataList);
 
 //Eventos
