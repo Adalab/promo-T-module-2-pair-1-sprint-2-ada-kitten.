@@ -40,17 +40,18 @@ const kittenData_3 = {
     race: "Maine Coon",
 };
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
-/*
+//Cambia la constante del listado kittenDataList para que sea una variable y el listado este vacío.
+//const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 let kittenDataList = [];
+
+//Haz un fetch para obtener el listado los gatitos.
 fetch(SERVER_URL)
 .then((response)=> response.json())
 .then((data) => {
-    Tasks=data.results;
-    
-
+    kittenDataList= data.results;
+    renderKittenList(kittenDataList)
 });
-*/
+ 
 
 
 //Funciones
