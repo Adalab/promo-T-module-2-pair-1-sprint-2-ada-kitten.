@@ -17,6 +17,9 @@ const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const input_search_race = document.querySelector('.js_in_search_race');
 
+const GITHUB_USER = '<CeliaMSB>';
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
+
 //Objetos con cada gatito
 const kittenData_1 = {
     image: "https://dev.adalab.es/gato-siames.webp",
@@ -37,7 +40,18 @@ const kittenData_3 = {
     race: "Maine Coon",
 };
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+//Cambia la constante del listado kittenDataList para que sea una variable y el listado este vacío.
+//const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+let kittenDataList = [];
+
+//Haz un fetch para obtener el listado los gatitos.
+fetch(SERVER_URL)
+.then((response)=> response.json())
+.then((data) => {
+    kittenDataList= data.results;
+    renderKittenList(kittenDataList)
+});
+ 
 
 
 //Funciones
@@ -118,12 +132,12 @@ function cancelNewKitten(event) {
 }
 function filterKitten(event) {
     event.preventDefault();
-    const descrSearchText = input_search_desc.value;
-    const raceSearchText = input_search_race.value;
+    const descrSearchText = input_search_desc.value.toLowerCase();
+    const raceSearchText = input_search_race.value.toLowerCase();
     listElement.innerHTML = "";
     const newFilterKitten = kittenDataList
-    .filter ((kitten) => kitten.desc.includes(descrSearchText))
-    .filter ((kitten) => kitten.race.includes(raceSearchText));
+    .filter ((kitten) => kitten.desc.toLowerCase().includes(descrSearchText))
+    .filter ((kitten) => kitten.race.toLowerCase().includes(raceSearchText));
     console.log(newFilterKitten);
     
     renderKittenList(newFilterKitten);
