@@ -20,6 +20,8 @@ const input_search_race = document.querySelector('.js_in_search_race');
 const GITHUB_USER = '<CeliaMSB>';
 const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 
+const kittenListStored = JSON.parse(localStorage.getItem('kittensList'));
+
 //Objetos con cada gatito
 const kittenData_1 = {
     image: "https://dev.adalab.es/gato-siames.webp",
@@ -45,14 +47,37 @@ const kittenData_3 = {
 let kittenDataList = [];
 
 //Haz un fetch para obtener el listado los gatitos.
-fetch(SERVER_URL)
+/*fetch(SERVER_URL)
 .then((response)=> response.json())
 .then((data) => {
     kittenDataList= data.results;
     renderKittenList(kittenDataList)
-});
- 
+});*/
 
+//Modifica la petición al servidor que hiciste en la sesión anterior, para que solo se realice la petición cuando no hay gatitos en el local storage.
+if (kittenListStored) {
+    const kittenListStored = JSON.parse(localStorage.getItem('kittensList'));
+    console.log(kittenListStored);
+  //si existe el listado de gatitos en el local storage
+  // vuelve a pintar el listado de gatitos
+  //...
+  //completa el código...
+
+} else {
+  //sino existe el listado de gatitos en el local storage
+  //haz la petición al servidor
+    fetch(SERVER_URL)
+    .then((response)=> response.json())
+    .then((data) => {
+    kittenDataList= data.results;
+    renderKittenList(kittenDataList)
+    localStorage.setItem('kittenDataList' , JSON.stringify(kittenDataList));
+    })
+
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
 //Funciones
 function renderKitten(kittenData) {
