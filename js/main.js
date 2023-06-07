@@ -63,6 +63,9 @@ if (kittenListStored) {
   //...
   //completa el código...
 
+kittenDataList = kittenListStored
+renderKittenList(kittenDataList)
+
 } else {
   //sino existe el listado de gatitos en el local storage
   //haz la petición al servidor
