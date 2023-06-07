@@ -101,6 +101,7 @@ function addNewKitten(event) {
             name: valueName,
             desc: valueDesc,
             race: valueRace,
+
     }
         kittenDataList.push(newKittenDataObject);
         renderKittenList(kittenDataList);
