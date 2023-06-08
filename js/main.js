@@ -56,8 +56,6 @@ let kittenDataList = [];
 
 //Modifica la petición al servidor que hiciste en la sesión anterior, para que solo se realice la petición cuando no hay gatitos en el local storage.
 if (kittenListStored) {
-    const kittenListStored = JSON.parse(localStorage.getItem('kittensList'));
-    console.log(kittenListStored);
   //si existe el listado de gatitos en el local storage
   // vuelve a pintar el listado de gatitos
   //...
@@ -83,7 +81,9 @@ renderKittenList(kittenDataList) //pintamos lista
 }
 
 //Funciones
+/*
 function renderKitten(kittenData) {
+    
     const kitten = `<li class="card">
     <article>
       <img
@@ -100,11 +100,34 @@ function renderKitten(kittenData) {
     </li>`;
     return kitten;
 }
+*/
+function renderKitten(kittenData) {
+    const liElement = document.createElement('li');
+    liElement.classList.add('card');
+
+    const articleElement = document.createElement('article');
+    liElement.appendChild(articleElement);
+
+    const imgElement = document.createElement('img');
+    imgElement.classList.add('card_img');
+    imgElement.src = kittenData.image;
+    imgElement.alt = 'gatito';
+    articleElement.appendChild(imgElement);
+
+    const h3Element = 
+
+
+    
+    return liElement;
+    //....
+    //Completa el código
+  }
 
 function renderKittenList(kittenDataList) {
     listElement.innerHTML = "";
     for (const kittenItem of kittenDataList) {
-        listElement.innerHTML += renderKitten(kittenItem);
+        //listElement.innerHTML += renderKitten(kittenItem);
+        listElement.appendChild(renderKitten(kittenItem));
     }
 }
 
@@ -180,6 +203,8 @@ linkNewFormElememt.addEventListener("click", handleClickNewCatForm);
 searchButton.addEventListener("click", filterKitten);
 buttonAdd.addEventListener("click", addNewKitten);
 buttonCancelForm.addEventListener("click", cancelNewKitten);
+
+
 
 
 
