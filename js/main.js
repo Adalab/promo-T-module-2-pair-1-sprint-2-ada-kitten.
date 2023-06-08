@@ -63,8 +63,8 @@ if (kittenListStored) {
   //...
   //completa el código...
 
-kittenDataList = kittenListStored
-renderKittenList(kittenDataList)
+kittenDataList = kittenListStored //lista gatitos = lista gatitos en el storage
+renderKittenList(kittenDataList) //pintamos lista
 
 } else {
   //sino existe el listado de gatitos en el local storage
