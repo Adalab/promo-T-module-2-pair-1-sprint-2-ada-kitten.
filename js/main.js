@@ -17,10 +17,10 @@ const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const input_search_race = document.querySelector('.js_in_search_race');
 
-const GITHUB_USER = '<CeliaMSB>';
+const GITHUB_USER = 'MariaPeCa';
 const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 
-const kittenListStored = JSON.parse(localStorage.getItem('kittensList'));
+const kittenListStored = JSON.parse(localStorage.getItem('kittenDataList'));
 
 //Objetos con cada gatito
 const kittenData_1 = {
@@ -46,27 +46,11 @@ const kittenData_3 = {
 //const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 let kittenDataList = [];
 
-//Haz un fetch para obtener el listado los gatitos.
-/*fetch(SERVER_URL)
-.then((response)=> response.json())
-.then((data) => {
-    kittenDataList= data.results;
-    renderKittenList(kittenDataList)
-});*/
-
 //Modifica la petición al servidor que hiciste en la sesión anterior, para que solo se realice la petición cuando no hay gatitos en el local storage.
 if (kittenListStored) {
-  //si existe el listado de gatitos en el local storage
-  // vuelve a pintar el listado de gatitos
-  //...
-  //completa el código...
-
 kittenDataList = kittenListStored //lista gatitos = lista gatitos en el storage
 renderKittenList(kittenDataList) //pintamos lista
-
 } else {
-  //sino existe el listado de gatitos en el local storage
-  //haz la petición al servidor
     fetch(SERVER_URL)
     .then((response)=> response.json())
     .then((data) => {
@@ -80,10 +64,9 @@ renderKittenList(kittenDataList) //pintamos lista
     });
 }
 
-//Funciones
-/*
+//Funciones 
+/* Primero hacer estructura a HTML y luego pasarla a JS
 function renderKitten(kittenData) {
-    
     const kitten = `<li class="card">
     <article>
       <img
@@ -114,13 +97,25 @@ function renderKitten(kittenData) {
     imgElement.alt = 'gatito';
     articleElement.appendChild(imgElement);
 
-    const h3Element = 
+    const h3Element = document.createElement('h3');
+    h3Element.classList.add('card_title');
+    const h3Content = document.createTextNode(kittenData.name);
+    h3Element.appendChild(h3Content);
+    articleElement.appendChild(h3Element);
 
+    const h3ElementRace = document.createElement('h3');
+    h3ElementRace.classList.add('card_race');
+    const h3ContentRace = document.createTextNode(kittenData.race);
+    h3ElementRace.appendChild(h3ContentRace);
+    articleElement.appendChild(h3ElementRace);
 
+    const DescElement = document.createElement('p');
+    DescElement.classList.add('card_description');
+    const descContent = document.createTextNode(kittenData.desc);
+    DescElement.appendChild(descContent);
+    articleElement.appendChild(DescElement);
     
     return liElement;
-    //....
-    //Completa el código
   }
 
 function renderKittenList(kittenDataList) {
